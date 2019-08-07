@@ -42,9 +42,11 @@ describe('Basic chaining', function() {
       expect(fetchProfileAndWriteToFile(fileWithGithubHandle, fileToWriteTo)).to.be.an.instanceOf(Promise);
     });
 
-    it('should eventually write a GitHub profile to a file', function(done) {
+    it.only('should eventually write a GitHub profile to a file', function(done) {
       fetchProfileAndWriteToFile(fileWithGithubHandle, fileToWriteTo)
-        .then(function() {
+        .then(function(hi) {
+          console.log(hi, 'this is the result')
+          console.log('fileToWriteTo', fs.readFileSync(fileToWriteTo, 'utf8'))
           var profile = JSON.parse(fs.readFileSync(fileToWriteTo, 'utf8'));
           expect(profile.id).to.equal(6980359);
           done();

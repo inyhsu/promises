@@ -12,7 +12,7 @@ var pluckFirstLineFromFile = function (filePath, callback) {
 
   fs.readFile(filePath, (err, content) => {
     if(err) {
-      callback(err, content)
+      callback(err)
     } else {
       callback(null, content.toString().split('\n')[0])
     }
@@ -24,7 +24,7 @@ var getStatusCode = function (url, callback) {
   // TODO
   request(url, function (err, res) {
     if(err){
-      callback(err, res)
+      callback(err)
     } else {
       callback(null, res.statusCode)
     }
